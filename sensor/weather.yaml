@@ -1,0 +1,37 @@
+- platform: darksky
+  api_key: !secret darksky_api_key
+  monitored_conditions:
+    - apparent_temperature
+#   - apparent_temperature_max
+#   - apparent_temperature_min
+    - cloud_cover
+#   - daily_summary
+#   - dew_point
+#   - hourly_summary
+    - humidity
+    - minutely_summary
+    - ozone
+#   - precip_intensity
+#   - precip_intensity_max
+#   - precip_probability
+#   - precip_type
+    - pressure
+#   - summary
+    - temperature
+#   - temperature_max
+#   - temperature_min
+    - visibility
+#   - wind_bearing
+    - wind_speed
+
+- platform: nest
+  monitored_conditions:
+#     - 'temperature'
+#     - 'target'
+     - 'humidity'
+#     - 'operation_mode'
+#     - 'last_connection'
+#     - 'co_status'
+#     - 'smoke_status'
+
+- platform: moon

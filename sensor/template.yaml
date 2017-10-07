@@ -1,0 +1,15 @@
+- platform: template
+  sensors:
+    time_of_day:
+      value_template: >-
+        {%- if now().hour >= 20 and now().hour < 23 %}
+            Evening
+        {%- elif now().hour >= 23 and now().hour < 24 %}
+            Nightfall
+        {%  elif now().hour >= 0 and now().hour < 6 %}
+            Night
+        {%  elif now().hour >= 6 and now().hour < 8 %}
+            Dusk
+        {% else %}
+            Day
+        {%- endif %}

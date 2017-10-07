@@ -1,0 +1,9 @@
+deps/
+.uuid
+.HA_VERSION
+home-assistant*.db
+home-assistant.log
+known_devices.yaml
+nest.conf
+plex.conf
+secrets.yaml
