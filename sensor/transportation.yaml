@@ -1,13 +1,27 @@
 - platform: command_line
-  name: Bus to Work Arrives
+  name: transit bus elkus
   command: ~/bin/cornelia_next_bus.sh
 
 - platform: google_travel_time
   api_key: !secret google_api_key
-  name: Time to Trader Joes
-  friendly_name: Time to trader joes
+  name: transit logan airport
+  origin: 85 seaport blvd, Boston, MA
+  destination: 1 harborside dr, Boston, MA
+
+- platform: google_travel_time
+  api_key: !secret google_api_key
+  name: transit trader joes
   origin: 85 seaport blvd, Boston, MA
   destination: 748 Memorial Drive, Cambridge, MA
-  #options:
-  #  mode: transit
 
+- platform: google_travel_time
+  api_key: !secret google_api_key
+  name: transit whole foods
+  origin: 85 seaport blvd, Boston, MA
+  destination: 200 Alewife Brook Pkwy, Cambridge, MA 02138
+
+- platform: lyft
+  client_id: !secret lyft_client_id
+  client_secret: !secret lyft_secret_id
+  start_latitude: 42.3518367
+  start_longitude: -71.0460651

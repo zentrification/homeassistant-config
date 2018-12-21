@@ -1,0 +1,48 @@
+- platform: broadlink
+  host: 10.0.73.83
+  mac: '34:ea:34:42:ac:d2'
+  timeout: 15
+  switches:
+    cablebox:
+      command_on: 'JgBKAAoaCjYJFgxXCigJKQkkCVYKAAHCCxoJMgkXChUKPgkXCQAKkQobCjUKFgVeCSkJKAklCVYJAAHDCxoJVgo5ChYJPwoWCTYJAA0FAAAAAAAAAAAAAAAAAAA='
+      command_off: ''
+    projector:
+      command_on: 'JgB+AAABFIwREhATDxMQExA1EDYQNRA2EIwSEBATEBMQExASEBMQNRATEAAC+AABFYwREhASEBMQExA1EDUQNhA1EIwQExATEBIQExATEBIQNhATEAAC+AABFIwREhATEBIQExA2EDUQNRA2EIwQExASEBMQExASEBMQNRATEAANBQAAAAAAAAAAAAA='
+      command_off: 'JgB+AAABFIwREhATDxMQExA1EDYQNRA2EIwSEBATEBMQExASEBMQNRATEAAC+AABFYwREhASEBMQExA1EDUQNhA1EIwQExATEBIQExATEBIQNhATEAAC+AABFIwREhATEBIQExA2EDUQNRA2EIwQExASEBMQExASEBMQNRATEAANBQAAAAAAAAAAAAA='
+    rotel:
+      command_on: 'JgBQAAABJpQRORA5ERMSEhEUEBQRExE4ETkQFBETERQQOBEUEBQRExETERQRExAUERMRExAWDxQQORE4EjgQORE4ETgSOBA5EQAFjQABJUwRAA0FAAAAAAAAAAA='
+      command_off: 'JgBQAAABJpQRORA5ERMSEhEUEBQRExE4ETkQFBETERQQOBEUEBQRExETERQRExAUERMRExAWDxQQORE4EjgQORE4ETgSOBA5EQAFjQABJUwRAA0FAAAAAAAAAAA='
+    rotel_volume:
+      command_on: 'JgBQAAABJZYOOw84ERQQFRAUEBUOFRE4EToOFQ8WDxUPOg8VEBUOFw0WEDcSOQ8WDjoRFA8UEBUPOxMRDxUQORAVDjsPOBM3EAAFjgABJE0PAA0FAAAAAAAAAAA='
+      command_off: 'JgBQAAABJpQSNxI4DxYPFRATERQRExE4EDkRExEUERIROg8VEBQRExA4EzcROBEUEDkQFBAVEBQQFBAUEBQQORAVETgQOBE5EAAFjQABJE0RAA0FAAAAAAAAAAA='
+
+- platform: command_line
+  switches:
+    galaxy_s3_flash:
+      command_on: 'curl -s "http://galaxy-s3:8080/enabletorch" > /dev/null'
+      command_off: 'curl -s "http://galaxy-s3:8080/disabletorch" > /dev/null'
+      command_state: 'curl "http://galaxy-s3:8080/status.json"'
+      value_template: '{{ value_json.curvals.torch == "on" }}'
+    lg_g3_flash:
+      command_on: 'curl -s "http://lg-g3:8080/enabletorch" > /dev/null'
+      command_off: 'curl -s "http://lg-g3:8080/disabletorch" > /dev/null'
+      command_state: 'curl "http://lg-g3:8080/status.json"'
+      value_template: '{{ value_json.curvals.torch == "on" }}'
+    lg_v10_flash:
+      command_on: 'curl -s "http://lg-v10:8080/enabletorch" > /dev/null'
+      command_off: 'curl -s "http://lg-v10:8080/disabletorch" > /dev/null'
+      command_state: 'curl "http://lg-v10:8080/status.json"'
+      value_template: '{{ value_json.curvals.torch == "on" }}'
+
+- platform: flux
+  name: fluxer
+  lights:
+    - light.lifx_d073d5109e46
+    - light.kitchen
+    - light.office
+    - light.office2
+  start_colortemp: 6000
+  disable_brightness_adjust: True
+  mode: mired
+  transition: 5
+  interval: 600

@@ -4,7 +4,7 @@
     - apparent_temperature
 #   - apparent_temperature_max
 #   - apparent_temperature_min
-    - cloud_cover
+#   - cloud_cover
 #   - daily_summary
 #   - dew_point
 #   - hourly_summary
@@ -15,12 +15,12 @@
 #   - precip_intensity_max
 #   - precip_probability
 #   - precip_type
-    - pressure
+#    - pressure
 #   - summary
     - temperature
 #   - temperature_max
 #   - temperature_min
-    - visibility
+#    - visibility
 #   - wind_bearing
     - wind_speed
 

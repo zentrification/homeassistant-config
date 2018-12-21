@@ -1,0 +1,18 @@
+- alias: 'HA Start'
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    service: switch.turn_on
+    entity_id: switch.fluxer
+
+- alias: 'Automatic Brightness'
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '00:10:00'
+  action:
+    service: light.turn_on
+    entity_id: light.office
+    data:
+      Brightness: 10
