@@ -1,0 +1,11 @@
+- name: Movie Time
+  entities:
+    switch.tv:
+      state: on
+    light.office2:
+      state: off
+    light.l2:
+      state: off
+    switch.rotel_input_1:
+      state: on
+

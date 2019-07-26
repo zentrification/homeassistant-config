@@ -8,28 +8,6 @@
   name: miami
   mjpeg_url: http://204.195.147.57:81/mjpg/video.mjpg
 
-# assorted cameras around boston
-- platform: generic
-  name: Commons Balcony
-  still_image_url: http://73.219.239.63:84/cgi-bin/camera?resolution=1024
-- platform: mjpeg
-  name: Teaparty Boat
-  mjpeg_url: http://108.49.186.55/mjpg/video.mjpg
-
-# traffic cameras
-- platform: generic
-  name: I93 Somerville
-  still_image_url: https://mass511.com/map/Cctv/406443--1
-- platform: generic
-  name: I90 Allston
-  still_image_url: https://mass511.com/map/Cctv/407977--1
-- platform: generic
-  name: I90 Brighton
-  still_image_url: https://mass511.com/map/Cctv/407976--1
-- platform: generic
-  name: I93 Dorchester
-  still_image_url: https://mass511.com/map/Cctv/1107--1
-
 # android ip webcam
 # - platform: mjpeg
 #   mjpeg_url: http://lg-g3:8080/video

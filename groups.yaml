@@ -1,16 +1,15 @@
-default_view:
+dashboard:
   view: yes
   entities:
-    # - camera.living_room
-    # - camera.living_room_2
-    - group.bedroom
-    - group.kitchen
-    - group.climate
-    - group.office
-    - camera.foscam_camera
+    - group.automation
+    - group.scene
+    - group.audio
+    - group.projector
+    - group.lights
     - group.transit
-    - group.weather
-    - media_player.chrome
+    - group.climate
+    - camera.foscam_camera
+    - sun.sun
     - device_tracker.amazonc5ea57c50
     - device_tracker.camus
     - device_tracker.clamence
@@ -18,97 +17,102 @@ default_view:
     - device_tracker.ibaby_608nacuv
     - device_tracker.tap613302h7
     - device_tracker.xboxone
+    - updater.updater
 
-boston:
+media:
   view: yes
   entities:
-    - group.cameras_boston
-    - group.cameras_i90
-    - group.cameras_i93
+    #- camera.miami
+    - media_player.65_tcl_roku_tv_3
+    - media_player.chrome_1
+    - media_player.chrome_2
 
-miami:
+weather:
   view: yes
   entities:
-    - camera.miami
+    - group.nest
+    - group.darksky
 
 # Groups
 ############################################################
-bedroom:
-  name: Bedroom
+audio:
+  name: Audio
   entities:
     #- scene.projector_time
-    - light.lifx_d073d5109e46
-    - switch.projector
-    - switch.brightness
-    - script.projector_brightness
-    - sensor.bedroom_thermostat_humidity
-    - climate.bedroom
+    # - light.lifx_d073d5109e46
+    # - sensor.bedroom_thermostat_humidity
+    # - climate.bedroom
     #- switch.cablebox
-    #- switch.rotel
-    #- switch.rotel_volume
+    - switch.tv
+    - switch.rotel
+    - switch.rotel_volume
+    - switch.rotel_input_1
+    - switch.rotel_input_2
 
-kitchen:
-  name: Kitchen
+automation:
+  name: Automation
   entities:
-    - light.kitchen
-    - sensor.living_room_thermostat_humidity
-    - climate.living_room
+    - automation.automatic_brightness
+    - automation.ha_start
 
-cameras_boston:
-  name: Boston Cameras
+climate:
+  name: Climate
   entities:
-    - camera.boston_skyline
-    - camera.commons_balcony
-    - camera.teaparty_boat
+    - climate.hallway
+    - sensor.hallway_thermostat_humidity
+    - sensor.dark_sky_humidity
+    - sensor.dark_sky_temperature
+    - sensor.dark_sky_minutely_summary
 
-cameras_i90:
-  name: I-90 Cameras
+darksky:
+  name: Dark Sky
   entities:
-    - camera.i90_allston
-    - camera.i90_brighton
+    - sensor.dark_sky_temperature
+    - sensor.dark_sky_apparent_temperature
+    - sensor.dark_sky_humidity
+    - sensor.dark_sky_ozone
+    - sensor.dark_sky_wind_speed
+    - sensor.dark_sky_minutely_summary
 
-cameras_i93:
-  name: I-93 Cameras
+lights:
+  name: Lights
   entities:
-    - camera.i93_somerville
-    - camera.i93_dorchester
-
-office:
-  name: Office
-  entities:
+    - light.lifx_d073d5389945
+    - light.lifx_d073d538b38a
+    - light.lifx_d073d538943a
     - light.office
+    - light.lifx_d073d5109e46
     - light.office2
+    - light.l2
+    - light.kitchen
     - switch.fluxer
+
+nest:
+  name: Nest
+  entities:
+    - binary_sensor.hallway_thermostat_fan
+    - sensor.hallway_thermostat_hvac_state
+    - climate.hallway
+    - sensor.hallway_thermostat_humidity
+    - sensor.hallway_thermostat_temperature
+    - sensor.hallway_thermostat_target
+    - sensor.hallway_thermostat_operation_mode
+    - binary_sensor.hallway_thermostat_online
+
+projector:
+  name: Projector
+  entities:
+    - switch.projector
+    - script.projector_brightness
+
+scene:
+  name: Scene
+  entities:
+    - scene.movie_time
 
 transit:
   name: Transit
   entities:
     - sensor.lyft_time
-    - sensor.transit_logan_airport
-    - sensor.transit_trader_joes
-    - sensor.transit_whole_foods
-
-weather:
-  name: Dark Sky
-  entities:
-    - sensor.dark_sky_temperature
-    - sensor.dark_sky_apparent_temperature
-    - sensor.dark_sky_cloud_coverage
-    - sensor.dark_sky_daily_high_apparent_temperature
-    - sensor.dark_sky_daily_high_temperature
-    - sensor.dark_sky_daily_low_apparent_temperature
-    - sensor.dark_sky_daily_low_temperature
-    - sensor.dark_sky_daily_max_precip_intensity
-    - sensor.dark_sky_daily_summary
-    - sensor.dark_sky_dew_point
-    - sensor.dark_sky_hourly_summary
-    - sensor.dark_sky_humidity
-    - sensor.dark_sky_minutely_summary
-    - sensor.dark_sky_precip
-    - sensor.dark_sky_precip_intensity
-    - sensor.dark_sky_precip_probability
-    - sensor.dark_sky_pressure
-    - sensor.dark_sky_summary
-    - sensor.dark_sky_visibility
-    - sensor.dark_sky_wind_bearing
-    - sensor.dark_sky_wind_speed
+    #- sensor.transit_brickell
+    #- sensor.transit_miami_beach

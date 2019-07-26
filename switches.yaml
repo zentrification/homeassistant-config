@@ -1,11 +1,15 @@
+# https://github.com/probonopd/irdb
+# https://github.com/molexx/irdb2broadlinkha
+# https://gist.githubusercontent.com/appden/42d5272bf128125b019c45bc2ed3311f/raw/bdede927b231933df0c1d6d47dcd140d466d9484/pronto2broadlink.py
+# https://github.com/mjg59/python-broadlink/issues/90
+# https://community.home-assistant.io/t/configuration-of-broadlink-ir-device-and-getting-the-right-ir-codes/48391
+
+
 - platform: broadlink
   host: 10.0.73.83
   mac: '34:ea:34:42:ac:d2'
   timeout: 15
   switches:
-    cablebox:
-      command_on: 'JgBKAAoaCjYJFgxXCigJKQkkCVYKAAHCCxoJMgkXChUKPgkXCQAKkQobCjUKFgVeCSkJKAklCVYJAAHDCxoJVgo5ChYJPwoWCTYJAA0FAAAAAAAAAAAAAAAAAAA='
-      command_off: ''
     projector:
       command_on: 'JgB+AAABFIwREhATDxMQExA1EDYQNRA2EIwSEBATEBMQExASEBMQNRATEAAC+AABFYwREhASEBMQExA1EDUQNhA1EIwQExATEBIQExATEBIQNhATEAAC+AABFIwREhATEBIQExA2EDUQNRA2EIwQExASEBMQExASEBMQNRATEAANBQAAAAAAAAAAAAA='
       command_off: 'JgB+AAABFIwREhATDxMQExA1EDYQNRA2EIwSEBATEBMQExASEBMQNRATEAAC+AABFYwREhASEBMQExA1EDUQNhA1EIwQExATEBIQExATEBIQNhATEAAC+AABFIwREhATEBIQExA2EDUQNRA2EIwQExASEBMQExASEBMQNRATEAANBQAAAAAAAAAAAAA='
@@ -15,34 +19,31 @@
     rotel_volume:
       command_on: 'JgBQAAABJZYOOw84ERQQFRAUEBUOFRE4EToOFQ8WDxUPOg8VEBUOFw0WEDcSOQ8WDjoRFA8UEBUPOxMRDxUQORAVDjsPOBM3EAAFjgABJE0PAA0FAAAAAAAAAAA='
       command_off: 'JgBQAAABJpQSNxI4DxYPFRATERQRExE4EDkRExEUERIROg8VEBQRExA4EzcROBEUEDkQFBAVEBQQFBAUEBQQORAVETgQOBE5EAAFjQABJE0RAA0FAAAAAAAAAAA='
-
-- platform: command_line
-  switches:
-    galaxy_s3_flash:
-      command_on: 'curl -s "http://galaxy-s3:8080/enabletorch" > /dev/null'
-      command_off: 'curl -s "http://galaxy-s3:8080/disabletorch" > /dev/null'
-      command_state: 'curl "http://galaxy-s3:8080/status.json"'
-      value_template: '{{ value_json.curvals.torch == "on" }}'
-    lg_g3_flash:
-      command_on: 'curl -s "http://lg-g3:8080/enabletorch" > /dev/null'
-      command_off: 'curl -s "http://lg-g3:8080/disabletorch" > /dev/null'
-      command_state: 'curl "http://lg-g3:8080/status.json"'
-      value_template: '{{ value_json.curvals.torch == "on" }}'
-    lg_v10_flash:
-      command_on: 'curl -s "http://lg-v10:8080/enabletorch" > /dev/null'
-      command_off: 'curl -s "http://lg-v10:8080/disabletorch" > /dev/null'
-      command_state: 'curl "http://lg-v10:8080/status.json"'
-      value_template: '{{ value_json.curvals.torch == "on" }}'
+    rotel_input_1:
+      command_on: 'JgBQAAABIZMRNxE4ERMRExEUEBQRExE4EDgRExEUEBQRNxEUEBQRExE4ETcROBAUERMRExEUEBQRExETERQQOBE4EDgROBA4EQAFEAABIkoQAA0FAAAAAAAAAAA='
+      command_off: 'JgBQAAABIZMRNxE4ERMRExEUEBQRExE4EDgRExEUEBQRNxEUEBQRExE4ETcROBAUERMRExEUEBQRExETERQQOBE4EDgROBA4EQAFEAABIkoQAA0FAAAAAAAAAAA='
+    rotel_input_2:
+      command_on: 'JgBQAAABIpIRNxE4ERMSEhETERQQFBE3ETgRExETERQQOBETERMRFBAUERMRExE4ERMRExETExIQOBE4EDgRExE4EDgROBA4EQAFDwABIUoRAA0FAAAAAAAAAAA='
+      command_off: 'JgBQAAABIpIRNxE4ERMSEhETERQQFBE3ETgRExETERQQOBETERMRFBAUERMRExE4ERMRExETExIQOBE4EDgRExE4EDgROBA4EQAFDwABIUoRAA0FAAAAAAAAAAA='
+    tv:
+      command_on: 'JgAgAQABJZQRFBA5ERQROBEUETgRORA5ETgROBE4ERQRFBEUETkQORE4ETgRORAVEDkRFBEUERQQFRAVEBUQOREUETgROBE5EAAE2QABJZQRFBA5ERQROBEUETgROBE5ETgROBE4ERQRFBEUETkQORE4ETgRORAVEDkRFBEUETgRFBEUERQROBEUETgRORAVEAAE2QABJZQSExE4ERQROBEUETgRORA5ETgROBE5EBUQFRAVEDkROBE4ETgRORAVEDkRFBEUETgRFBEUERQROBEUETgRORAVEAAE2QABJZQRFBA5ERQQOREUETgROBE5EDkROBE4ERQRFBEUETgRORA5ETgROBEUETkQFRAUETkRFBAVEBUQOREUETgROBEUEQANBQAAAAAAAAAA'
+      command_off: 'JgAgAQABJZQRFBA5ERQROBEUETgRORA5ETgROBE4ERQRFBEUETkQORE4ETgRORAVEDkRFBEUERQQFRAVEBUQOREUETgROBE5EAAE2QABJZQRFBA5ERQROBEUETgROBE5ETgROBE4ERQRFBEUETkQORE4ETgRORAVEDkRFBEUETgRFBEUERQROBEUETgRORAVEAAE2QABJZQSExE4ERQROBEUETgRORA5ETgROBE5EBUQFRAVEDkROBE4ETgRORAVEDkRFBEUETgRFBEUERQROBEUETgRORAVEAAE2QABJZQRFBA5ERQQOREUETgROBE5EDkROBE4ERQRFBEUETgRORA5ETgROBEUETkQFRAUETkRFBAVEBUQOREUETgROBEUEQANBQAAAAAAAAAA'
 
 - platform: flux
   name: fluxer
   lights:
-    - light.lifx_d073d5109e46
+    - light.l2
     - light.kitchen
     - light.office
     - light.office2
+    - light.lifx_d073d5109e46
+    - light.lifx_d073d538943a
+    - light.lifx_d073d5389945
+    - light.lifx_d073d538b38a
   start_colortemp: 6000
+  sunset_colortemp: 3500
+  stop_colortemp: 2500
   disable_brightness_adjust: True
   mode: mired
-  transition: 5
-  interval: 600
+  transition: 1
+  interval: 60

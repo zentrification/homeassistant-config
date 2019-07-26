@@ -1,27 +1,22 @@
-- platform: command_line
-  name: transit bus elkus
-  command: ~/bin/cornelia_next_bus.sh
+#- platform: command_line
+#  name: transit bus elkus
+#  command: ~/bin/cornelia_next_bus.sh
 
-- platform: google_travel_time
-  api_key: !secret google_api_key
-  name: transit logan airport
-  origin: 85 seaport blvd, Boston, MA
-  destination: 1 harborside dr, Boston, MA
-
-- platform: google_travel_time
-  api_key: !secret google_api_key
-  name: transit trader joes
-  origin: 85 seaport blvd, Boston, MA
-  destination: 748 Memorial Drive, Cambridge, MA
-
-- platform: google_travel_time
-  api_key: !secret google_api_key
-  name: transit whole foods
-  origin: 85 seaport blvd, Boston, MA
-  destination: 200 Alewife Brook Pkwy, Cambridge, MA 02138
+# requires paid API account
+#- platform: google_travel_time
+#  api_key: !secret google_api_key
+#  name: transit brickell
+#  origin: !secret home_address
+#  destination: 601 S Miami Ave Suite 181-C, Miami, FL
+#
+#- platform: google_travel_time
+#  api_key: !secret google_api_key
+#  name: transit miami beach
+#  origin: 2500 Biscayne Blvd, Miami, FL
+#  destination: 1200 Meridian Ave, Miami Beach, FL
 
 - platform: lyft
   client_id: !secret lyft_client_id
   client_secret: !secret lyft_secret_id
-  start_latitude: 42.3518367
-  start_longitude: -71.0460651
+  start_latitude: !secret latitude
+  start_longitude: !secret longitude

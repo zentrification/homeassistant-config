@@ -9,23 +9,18 @@ sensor.living_room_thermostat_humidity:
   friendly_name: Humidity
   icon: mdi:water-percent
 
-light.lifx_d073d5109e46:
-  friendly_name: Light
-light.kitchen:
-  friendly_name: Light
-
 switch.fluxer:
   friendly_name: Adjust lights to sun
 
-sensor.transit_bus_elkus:
-  friendly_name: Bus to Elkus Arrives in
-  icon: mdi:bus
-sensor.transit_logan_airport:
-  friendly_name: Logan Airpot
-  icon: mdi:car-side
-sensor.transit_trader_joes:
-  friendly_name: Trader Joes Cambridge
-  icon: mdi:car-side
-sensor.transit_whole_foods:
-  friendly_name: Whole Foods Freshpond
-  icon: mdi:car-side
+#sensor.transit_bus_elkus:
+#  friendly_name: Bus to Elkus Arrives in
+#  icon: mdi:bus
+#sensor.transit_logan_airport:
+#  friendly_name: Logan Airpot
+#  icon: mdi:car-side
+#sensor.transit_trader_joes:
+#  friendly_name: Trader Joes Cambridge
+#  icon: mdi:car-side
+#sensor.transit_whole_foods:
+#  friendly_name: Whole Foods Freshpond
+#  icon: mdi:car-side

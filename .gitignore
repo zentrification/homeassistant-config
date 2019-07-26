@@ -1,6 +1,7 @@
 deps/
 .uuid
 .HA_VERSION
+.storage/
 home-assistant*.db
 home-assistant.log
 known_devices.yaml
