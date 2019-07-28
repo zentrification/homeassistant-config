@@ -8,12 +8,12 @@
 ## Setup
 
 Install HACS
-https://custom-components.github.io/hacs/
+* https://custom-components.github.io/hacs/
 
 Through HACS, install
-https://github.com/claytonjn/hass-circadian_lighting
-https://github.com/custom-cards/roku-card
-https://github.com/custom-components/weatheralerts
+* https://github.com/claytonjn/hass-circadian_lighting
+* https://github.com/custom-cards/roku-card
+* https://github.com/custom-components/weatheralerts
 
 ## Screenshots
 
