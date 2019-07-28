@@ -24,25 +24,35 @@ discovery:
 frontend:
 history:
 logbook:
+logger:
+system_health:
 sun:
 tts:
-  platform: google
+  platform: google_translate
 updater:
 
 automation: !include automation.yaml
 camera: !include cameras.yaml
 group: !include groups.yaml
+hacs:
+  token: e575c4a7328f50587454fad0996fd41c504572ba
 lifx:
 sensor: !include_dir_merge_list sensor
 scene: !include scenes.yaml
+script: !include scripts.yaml
 switch: !include switches.yaml
+
+circadian_lighting:
+  transition: 1
 
 device_tracker:
   - platform: unifi
-    host: 10.0.73.20
-    username: chris
+    username: !secret unifi_username
     password: !secret unifi_password
     verify_ssl: false
+    new_device_defaults:
+      track_new_devices: true
+      hide_if_away: false
 
 media_player:
   - platform: plex
@@ -51,22 +61,10 @@ nest:
   client_id: !secret nest_id
   client_secret: !secret nest_secret
 
-script:
-  projector_brightness:
-    sequence:
-      - service: switch.broadlink_send_packet_10_0_73_83
-        data:
-          packet:
-            - "JgB+AAABE40QFA4UDxYNFA82DzYSMxA1EI4PEw83DzYPERIUDxQNFRA2DwACswABFI0REg8TDxYOEw82EDYPNg83Do8PEw44DzUPFQ8UDhMPFBA2DgACtQABE4wOFhATDxQNFQ83EDUPNw82D4wREw82DzYPFQ8UDhQOFQ82DwANBQAAAAAAAAAAAAA="
-            - "JgCAAAABFIwREhATEBIQExA1EDYQNRA1EIwRNRASEBMQExASEBMQExA1EAAC1QABFIwREhASEBMQExA1EDURNRA1EIwRNBATEBMQEhATEBMQEhA2EL8LAAILAAEUjBASEBMQExASEDURNRA1EDYQixE1EBIREhATEBMQEhATEDUQAA0FAAAAAAAAAAA="
-            - "JgB+AAABFIwREhASEBMQExA1EDUQNhA1EIwQNhA1EDUQExATEBMPExA1EAACkAABFYwQEhATEBMQEhA2EDUQNRA2EIwQNRA1EDYQEhATEBMQEhA2EAACkAABFIwRERATEBMQExA1EDUQNhA1EIwQNRA2EDUQExASEBMQExA1EAANBQAAAAAAAAAAAAA="
-            - "JgCAAAABFIwREhATEBIQExA1EDYQNRA1EIwRNRASEBMQExASEBMQExA1EAAC1QABFIwREhASEBMQExA1EDURNRA1EIwRNBATEBMQEhATEBMQEhA2EL8LAAILAAEUjBASEBMQExASEDURNRA1EDYQixE1EBIREhATEBMQEhATEDUQAA0FAAAAAAAAAAA="
-            - "JgB+AAABE40QFA4UDxYNFA82DzYSMxA1EI4PEw83DzYPERIUDxQNFRA2DwACswABFI0REg8TDxYOEw82EDYPNg83Do8PEw44DzUPFQ8UDhMPFBA2DgACtQABE4wOFhATDxQNFQ83EDUPNw82D4wREw82DzYPFQ8UDhQOFQ82DwANBQAAAAAAAAAAAAA="
-            - "JgB+AAABE40QFA4UDxYNFA82DzYSMxA1EI4PEw83DzYPERIUDxQNFRA2DwACswABFI0REg8TDxYOEw82EDYPNg83Do8PEw44DzUPFQ8UDhMPFBA2DgACtQABE4wOFhATDxQNFQ83EDUPNw82D4wREw82DzYPFQ8UDhQOFQ82DwANBQAAAAAAAAAAAAA="
-  # tv_time:
-  #   sequence:
-  #     - service: switch.broadlink_send_packet_10_0_73_83
-  #       data:
-  #         packet:
-  #           - 'JgAgAQABJZQRFBA5ERQROBEUETgRORA5ETgROBE4ERQRFBEUETkQORE4ETgRORAVEDkRFBEUERQQFRAVEBUQOREUETgROBE5EAAE2QABJZQRFBA5ERQROBEUETgROBE5ETgROBE4ERQRFBEUETkQORE4ETgRORAVEDkRFBEUETgRFBEUERQROBEUETgRORAVEAAE2QABJZQSExE4ERQROBEUETgRORA5ETgROBE5EBUQFRAVEDkROBE4ETgRORAVEDkRFBEUETgRFBEUERQROBEUETgRORAVEAAE2QABJZQRFBA5ERQQOREUETgROBE5EDkROBE4ERQRFBEUETgRORA5ETgROBEUETkQFRAUETkRFBAVEBUQOREUETgROBEUEQANBQAAAAAAAAAA'
-  #           - 'JgBQAAABIZMRNxE4ERMRExEUEBQRExE4EDgRExEUEBQRNxEUEBQRExE4ETcROBAUERMRExEUEBQRExETERQQOBE4EDgROBA4EQAFEAABIkoQAA0FAAAAAAAAAAA='
+roku:
+  - host: 10.0.73.50
+
+weather:
+  - platform: darksky
+    api_key: !secret darksky_api_key
+

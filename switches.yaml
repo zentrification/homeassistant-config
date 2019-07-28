@@ -29,21 +29,49 @@
       command_on: 'JgAgAQABJZQRFBA5ERQROBEUETgRORA5ETgROBE4ERQRFBEUETkQORE4ETgRORAVEDkRFBEUERQQFRAVEBUQOREUETgROBE5EAAE2QABJZQRFBA5ERQROBEUETgROBE5ETgROBE4ERQRFBEUETkQORE4ETgRORAVEDkRFBEUETgRFBEUERQROBEUETgRORAVEAAE2QABJZQSExE4ERQROBEUETgRORA5ETgROBE5EBUQFRAVEDkROBE4ETgRORAVEDkRFBEUETgRFBEUERQROBEUETgRORAVEAAE2QABJZQRFBA5ERQQOREUETgROBE5EDkROBE4ERQRFBEUETgRORA5ETgROBEUETkQFRAUETkRFBAVEBUQOREUETgROBEUEQANBQAAAAAAAAAA'
       command_off: 'JgAgAQABJZQRFBA5ERQROBEUETgRORA5ETgROBE4ERQRFBEUETkQORE4ETgRORAVEDkRFBEUERQQFRAVEBUQOREUETgROBE5EAAE2QABJZQRFBA5ERQROBEUETgROBE5ETgROBE4ERQRFBEUETkQORE4ETgRORAVEDkRFBEUETgRFBEUERQROBEUETgRORAVEAAE2QABJZQSExE4ERQROBEUETgRORA5ETgROBE5EBUQFRAVEDkROBE4ETgRORAVEDkRFBEUETgRFBEUERQROBEUETgRORAVEAAE2QABJZQRFBA5ERQQOREUETgROBE5EDkROBE4ERQRFBEUETgRORA5ETgROBEUETkQFRAUETkRFBAVEBUQOREUETgROBEUEQANBQAAAAAAAAAA'
 
-- platform: flux
-  name: fluxer
-  lights:
-    - light.l2
-    - light.kitchen
+# http://www.ipcamcontrol.net/files/Foscam%20IPCamera%20CGI%20User%20Guide-V1.0.4.pdf
+- platform: command_line
+  switches:
+    foscam_pan:
+      command_on: "~/bin/foscam.sh left"
+      command_off: "~/bin/foscam.sh right"
+    foscam_tilt:
+      command_on: "~/bin/foscam.sh up"
+      command_off: "~/bin/foscam.sh down"
+    foscam_zoom:
+      command_on: "~/bin/foscam.sh in"
+      command_off: "~/bin/foscam.sh out"
+    foscam_reset:
+      command_on: "~/bin/foscam.sh reset"
+      command_off: "~/bin/foscam.sh reset"
+
+# - platform: flux
+#   name: fluxer
+#   lights:
+#     - light.counter1
+#     - light.counter2
+#     - light.office
+#     - light.kitchen1
+#     - light.kitchen2
+#     - light.kitchen3
+#     - light.living1
+#     - light.living2
+#   start_colortemp: 6000
+#   sunset_colortemp: 3000
+#   stop_colortemp: 2500
+#   disable_brightness_adjust: True
+#   mode: mired
+#   transition: 1
+#   interval: 90
+
+- platform: circadian_lighting
+  min_brightness: 30
+  lights_ct:
+    - light.counter1
+    - light.counter2
     - light.office
-    - light.office2
-    - light.lifx_d073d5109e46
-    - light.lifx_d073d538943a
-    - light.lifx_d073d5389945
-    - light.lifx_d073d538b38a
-  start_colortemp: 6000
-  sunset_colortemp: 3500
-  stop_colortemp: 2500
-  disable_brightness_adjust: True
-  mode: mired
-  transition: 1
-  interval: 60
+    - light.kitchen1
+    - light.kitchen2
+    - light.kitchen3
+    - light.living1
+    - light.living2

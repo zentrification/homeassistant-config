@@ -3,10 +3,31 @@
   username: !secret foscam_username
   password: !secret foscam_password
 
+# weather
+- platform: generic
+  name: Miami Weather
+  still_image_url: "https://radblast.wunderground.com/cgi-bin/radar/WUNIDS_map?num=10&type=N0R&mapx=400&mapy=240&brand=wui&delay=15&frame=0&scale=1&transx=0&transy=0&severe=1&smooth=0&centerx=400&centery=240&station=AMX&rainsnow=1&lightning=0&noclutter=0&showlabels=1&showstorms=0"
+
 # miami cameras
-- platform: mjpeg
-  name: miami
-  mjpeg_url: http://204.195.147.57:81/mjpg/video.mjpg
+- platform: generic
+  name: Brickell
+  still_image_url: https://fl511.com/map/Cctv/735--2
+
+- platform: generic
+  name: I95 Biscayne
+  still_image_url: https://fl511.com/map/Cctv/656--2
+
+- platform: generic
+  name: I95 Wynwood
+  still_image_url: https://fl511.com/map/Cctv/759--2
+
+- platform: generic
+  name: Julia Tuttle Causeway
+  still_image_url: https://fl511.com/map/Cctv/658--2
+
+- platform: generic
+  name: McArthur Causeway
+  still_image_url: https://fl511.com/map/Cctv/838--2
 
 # android ip webcam
 # - platform: mjpeg

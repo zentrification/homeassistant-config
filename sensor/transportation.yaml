@@ -1,22 +1,15 @@
-#- platform: command_line
-#  name: transit bus elkus
-#  command: ~/bin/cornelia_next_bus.sh
-
 # requires paid API account
 #- platform: google_travel_time
 #  api_key: !secret google_api_key
 #  name: transit brickell
 #  origin: !secret home_address
 #  destination: 601 S Miami Ave Suite 181-C, Miami, FL
-#
-#- platform: google_travel_time
-#  api_key: !secret google_api_key
-#  name: transit miami beach
-#  origin: 2500 Biscayne Blvd, Miami, FL
-#  destination: 1200 Meridian Ave, Miami Beach, FL
 
 - platform: lyft
   client_id: !secret lyft_client_id
   client_secret: !secret lyft_secret_id
   start_latitude: !secret latitude
   start_longitude: !secret longitude
+  end_latitude: 25.76999
+  end_longitude: -80.13435
+

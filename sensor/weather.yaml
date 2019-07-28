@@ -1,37 +1,39 @@
 - platform: darksky
   api_key: !secret darksky_api_key
+  forecast:
+    - 0
+  hourly_forecast:
+    - 0
+    - 1
   monitored_conditions:
-    - apparent_temperature
-#   - apparent_temperature_max
-#   - apparent_temperature_min
-#   - cloud_cover
-#   - daily_summary
-#   - dew_point
-#   - hourly_summary
-    - humidity
-    - minutely_summary
-    - ozone
-#   - precip_intensity
-#   - precip_intensity_max
-#   - precip_probability
-#   - precip_type
-#    - pressure
-#   - summary
+    - summary
+    - icon
+    - precip_type
+    - precip_intensity
+    - precip_probability
+    - precip_accumulation
     - temperature
-#   - temperature_max
-#   - temperature_min
-#    - visibility
-#   - wind_bearing
+    - apparent_temperature
+    - dew_point
     - wind_speed
-
-- platform: nest
-  monitored_conditions:
-#     - 'temperature'
-#     - 'target'
-     - 'humidity'
-#     - 'operation_mode'
-#     - 'last_connection'
-#     - 'co_status'
-#     - 'smoke_status'
+    - wind_gust
+    - wind_bearing
+    - cloud_cover
+    - humidity
+    - pressure
+    - visibility
+    - ozone
+    - minutely_summary
+    - hourly_summary
+    - daily_summary
+    - uv_index
+    - nearest_storm_distance
+    - nearest_storm_bearing
 
 - platform: moon
+
+# SAME id here
+# https://www.nws.noaa.gov/nwr/coverage/ccov.php?State=FL
+- platform: weatheralerts
+  sameid: 012086
+  # sameid: 012011

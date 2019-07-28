@@ -1,11 +1,50 @@
+- name: Bed Time
+  entities:
+    climate.hallway:
+      state: on
+      hvac_mode: cool
+      temperature: 77
+    light.counter1:
+      state: off
+    light.counter2:
+      state: off
+    light.office:
+      state: off
+    light.kitchen1:
+      state: off
+    light.kitchen2:
+      state: off
+    light.kitchen3:
+      state: off
+    light.living1:
+      state: off
+    light.living2:
+      state: off
+
 - name: Movie Time
   entities:
     switch.tv:
       state: on
-    light.office2:
+    light.living1:
       state: off
-    light.l2:
+    light.living2:
       state: off
     switch.rotel_input_1:
       state: on
 
+- name: Lights at Sunset
+  entities:
+    light.counter1:
+      state: on
+    light.counter2:
+      state: on
+    light.office:
+      state: on
+    light.kitchen1:
+      state: on
+    light.kitchen2:
+      state: on
+    light.kitchen3:
+      state: on
+    light.living1:
+      state: on

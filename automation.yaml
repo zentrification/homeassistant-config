@@ -1,18 +1,16 @@
-- alias: 'HA Start'
+- alias: 'Start Circadian Lighting'
   trigger:
     platform: homeassistant
     event: start
   action:
     service: switch.turn_on
-    entity_id: switch.fluxer
+    entity_id: switch.circadian_lighting_circadian_lighting
 
-- alias: 'Automatic Brightness'
+- alias: 'Turn on Lights at Sunset'
   trigger:
     platform: sun
     event: sunset
-    offset: '00:10:00'
+    offset: "-01:00:00"
   action:
-    service: light.turn_on
-    entity_id: light.office
-    data:
-      Brightness: 10
+    service: scene.turn_on
+    entity_id: scene.lights_at_sunset
