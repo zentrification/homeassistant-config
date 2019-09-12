@@ -1,10 +1,83 @@
-- id: '1564185503797'
-  alias: New Automation
+- alias: 'Start Circadian Lighting'
   trigger:
-  - event: sunset
-    platform: sun
-  condition: []
+    platform: homeassistant
+    event: start
   action:
-  - data:
-      entity_id: sunset
+    service: switch.turn_on
+    entity_id: switch.circadian_lighting_circadian_lighting
+
+- alias: 'Turn on Lights at Morning'
+  trigger:
+    platform: time
+    at: "08:00:00"
+  condition:
+    condition: state
+    entity_id: device_tracker.lg_g7
+    state: 'home'
+  action:
     service: scene.turn_on
+    entity_id: scene.lights_at_morning
+
+- alias: 'Turn on Lights at Sunset'
+  trigger:
+    platform: numeric_state
+    entity_id: sun.sun
+    value_template: "{{ state.attributes.elevation }}"
+    below: 0
+  condition:
+    condition: state
+    entity_id: device_tracker.lg_g7
+    state: 'home'
+  action:
+    service: scene.turn_on
+    entity_id: scene.lights_at_sunset
+
+- alias: 'Turn on Lights on Cloudy Days'
+  trigger:
+    platform: numeric_state
+    entity_id:  sensor.dark_sky_cloud_coverage
+    above: 55
+  condition:
+    - condition: state
+      entity_id: device_tracker.lg_g7
+      state: 'home'
+    - condition: time
+      after: '09:00:00'
+      before: '18:00:00'
+  action:
+    service: scene.turn_on
+    entity_id: scene.lights_on_cloudy_days
+
+- alias: 'Disable Security when Home'
+  trigger:
+    platform: state
+    # entity_id: group.home_devices
+    entity_id: device_tracker.lg_g7
+    to: 'home'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.foscam_security
+    - service: climate.set_preset_mode
+      entity_id: climate.hallway
+      data:
+        preset_mode: none
+
+- alias: 'Enable Security when Not Home'
+  trigger:
+    platform: state
+    # entity_id: group.home_devices
+    entity_id: device_tracker.lg_g7
+    to: 'not_home'
+    from: 'home'
+    for: "00:10:00"
+  action:
+    - service: homeassistant.turn_off
+      entity_id: group.lights
+    - service: switch.turn_off
+      entity_id: switch.tv
+    - service: switch.turn_on
+      entity_id: switch.foscam_security
+    - service: climate.set_preset_mode
+      entity_id: climate.hallway
+      data:
+        preset_mode: away

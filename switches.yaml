@@ -25,13 +25,21 @@
     rotel_input_2:
       command_on: 'JgBQAAABIpIRNxE4ERMSEhETERQQFBE3ETgRExETERQQOBETERMRFBAUERMRExE4ERMRExETExIQOBE4EDgRExE4EDgROBA4EQAFDwABIUoRAA0FAAAAAAAAAAA='
       command_off: 'JgBQAAABIpIRNxE4ERMSEhETERQQFBE3ETgRExETERQQOBETERMRFBAUERMRExE4ERMRExETExIQOBE4EDgRExE4EDgROBA4EQAFDwABIUoRAA0FAAAAAAAAAAA='
-    tv:
-      command_on: 'JgAgAQABJZQRFBA5ERQROBEUETgRORA5ETgROBE4ERQRFBEUETkQORE4ETgRORAVEDkRFBEUERQQFRAVEBUQOREUETgROBE5EAAE2QABJZQRFBA5ERQROBEUETgROBE5ETgROBE4ERQRFBEUETkQORE4ETgRORAVEDkRFBEUETgRFBEUERQROBEUETgRORAVEAAE2QABJZQSExE4ERQROBEUETgRORA5ETgROBE5EBUQFRAVEDkROBE4ETgRORAVEDkRFBEUETgRFBEUERQROBEUETgRORAVEAAE2QABJZQRFBA5ERQQOREUETgROBE5EDkROBE4ERQRFBEUETgRORA5ETgROBEUETkQFRAUETkRFBAVEBUQOREUETgROBEUEQANBQAAAAAAAAAA'
-      command_off: 'JgAgAQABJZQRFBA5ERQROBEUETgRORA5ETgROBE4ERQRFBEUETkQORE4ETgRORAVEDkRFBEUERQQFRAVEBUQOREUETgROBE5EAAE2QABJZQRFBA5ERQROBEUETgROBE5ETgROBE4ERQRFBEUETkQORE4ETgRORAVEDkRFBEUETgRFBEUERQROBEUETgRORAVEAAE2QABJZQSExE4ERQROBEUETgRORA5ETgROBE5EBUQFRAVEDkROBE4ETgRORAVEDkRFBEUETgRFBEUERQROBEUETgRORAVEAAE2QABJZQRFBA5ERQQOREUETgROBE5EDkROBE4ERQRFBEUETgRORA5ETgROBEUETkQFRAUETkRFBAVEBUQOREUETgROBEUEQANBQAAAAAAAAAA'
+    volume_up:
+      command_on: 'JgBQAAABJZYOOw84ERQQFRAUEBUOFRE4EToOFQ8WDxUPOg8VEBUOFw0WEDcSOQ8WDjoRFA8UEBUPOxMRDxUQORAVDjsPOBM3EAAFjgABJE0PAA0FAAAAAAAAAAA='
+      command_off: 'JgBQAAABJZYOOw84ERQQFRAUEBUOFRE4EToOFQ8WDxUPOg8VEBUOFw0WEDcSOQ8WDjoRFA8UEBUPOxMRDxUQORAVDjsPOBM3EAAFjgABJE0PAA0FAAAAAAAAAAA='
+    volume_down:
+      command_on: 'JgBQAAABJpQSNxI4DxYPFRATERQRExE4EDkRExEUERIROg8VEBQRExA4EzcROBEUEDkQFBAVEBQQFBAUEBQQORAVETgQOBE5EAAFjQABJE0RAA0FAAAAAAAAAAA='
+      command_off: 'JgBQAAABJpQSNxI4DxYPFRATERQRExE4EDkRExEUERIROg8VEBQRExA4EzcROBEUEDkQFBAVEBQQFBAUEBQQORAVETgQOBE5EAAFjQABJE0RAA0FAAAAAAAAAAA='
 
 # http://www.ipcamcontrol.net/files/Foscam%20IPCamera%20CGI%20User%20Guide-V1.0.4.pdf
 - platform: command_line
   switches:
+    foscam_security:
+      command_on: "~/bin/foscam.sh security_on"
+      command_off: "~/bin/foscam.sh security_off"
+      command_state: "~/bin/foscam.sh motion"
+      value_template: '{{ value == "1" }}'
     foscam_pan:
       command_on: "~/bin/foscam.sh left"
       command_off: "~/bin/foscam.sh right"
@@ -44,6 +52,11 @@
     foscam_reset:
       command_on: "~/bin/foscam.sh reset"
       command_off: "~/bin/foscam.sh reset"
+    tv:
+      command_on: 'curl -X POST http://10.0.73.50:8060/keypress/PowerOn'
+      command_off: 'curl -X POST http://10.0.73.50:8060/keypress/PowerOff'
+      command_state: 'curl -s GET http://10.0.73.50:8060/query/device-info | grep power-mode | sed -e "s:.*<power-mode>\(.*\)</power-mode>.*:\1:"'
+      value_template: '{{ value == "PowerOn" }}'
 
 # - platform: flux
 #   name: fluxer
@@ -67,11 +80,13 @@
 - platform: circadian_lighting
   min_brightness: 30
   lights_ct:
+    - light.bedroom1
     - light.counter1
     - light.counter2
-    - light.office
+    - light.office1
     - light.kitchen1
     - light.kitchen2
     - light.kitchen3
     - light.living1
     - light.living2
+    - light.living3

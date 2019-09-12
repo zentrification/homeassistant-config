@@ -16,22 +16,28 @@ http:
   # Uncomment this to add a password (recommended!)
   # api_password: PASSWORD
   # Uncomment this if you are using SSL or running in Docker etc
-  # base_url: example.duckdns.org:8123
+  # base_url: capablanca.zentrification.lan:8123
+  # ssl_certificate: /etc/ssl/certs/zentrification.pem
+  # ssl_key: /etc/ssl/private/zentrification.key.pem
 
 config:
 conversation:
 discovery:
 frontend:
+  themes: !include themes.yaml
 history:
 logbook:
 logger:
+recorder:
+  purge_interval: 1
+  purge_keep_days: 30
 system_health:
 sun:
 tts:
   platform: google_translate
 updater:
 
-automation: !include automation.yaml
+automation: !include automations.yaml
 camera: !include cameras.yaml
 group: !include groups.yaml
 hacs:
@@ -40,6 +46,7 @@ lifx:
 sensor: !include_dir_merge_list sensor
 scene: !include scenes.yaml
 script: !include scripts.yaml
+smartir:
 switch: !include switches.yaml
 
 circadian_lighting:
@@ -56,6 +63,11 @@ device_tracker:
 
 media_player:
   - platform: plex
+  - platform: smartir
+    name: Living room TV
+    unique_id: living_room_tv
+    device_code: 1000
+    controller_data: 10.0.73.83
 
 nest:
   client_id: !secret nest_id

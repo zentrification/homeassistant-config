@@ -1,0 +1,30 @@
+lights:
+  name: Lights
+  entities:
+    - light.bedroom1
+    - light.counter1
+    - light.counter2
+    - light.office1
+    - light.kitchen1
+    - light.kitchen2
+    - light.kitchen3
+    - light.living1
+    - light.living2
+    - light.living3
+
+lights_overhead:
+  name: Overhead Lights
+  entities:
+    - light.bedroom1
+    - light.office1
+    - light.kitchen1
+    - light.kitchen2
+    - light.kitchen3
+    - light.living1
+
+lights_tv:
+  name: Lights around TV
+  entities:
+    - light.living1
+    - light.living2
+    - light.living3

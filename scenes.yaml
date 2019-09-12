@@ -4,47 +4,37 @@
       state: on
       hvac_mode: cool
       temperature: 77
-    light.counter1:
+    group.lights:
       state: off
-    light.counter2:
-      state: off
-    light.office:
-      state: off
-    light.kitchen1:
-      state: off
-    light.kitchen2:
-      state: off
-    light.kitchen3:
-      state: off
-    light.living1:
-      state: off
-    light.living2:
+    switch.tv:
       state: off
 
 - name: Movie Time
   entities:
     switch.tv:
       state: on
-    light.living1:
-      state: off
-    light.living2:
-      state: off
     switch.rotel_input_1:
       state: on
+    group.lights_tv:
+      state: off
+    light.bedroom1:
+      state: off
+    light.office1:
+      state: off
 
 - name: Lights at Sunset
   entities:
-    light.counter1:
+    group.lights_overhead:
       state: on
-    light.counter2:
+
+- name: Lights at Morning
+  entities:
+    group.lights_overhead:
       state: on
-    light.office:
-      state: on
-    light.kitchen1:
-      state: on
-    light.kitchen2:
-      state: on
-    light.kitchen3:
-      state: on
-    light.living1:
+    light.bedroom1:
+      state: off
+
+- name: Lights on Cloudy Days
+  entities:
+    group.lights_overhead:
       state: on
