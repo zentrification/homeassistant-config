@@ -6,19 +6,19 @@
     service: switch.turn_on
     entity_id: switch.circadian_lighting_circadian_lighting
 
-- alias: 'Turn on Lights at Morning'
+- alias: 'Lights on at morning'
   trigger:
     platform: time
     at: "08:00:00"
   condition:
     condition: state
-    entity_id: device_tracker.lg_g7
+    entity_id: group.home_devices
     state: 'home'
   action:
-    service: scene.turn_on
-    entity_id: scene.lights_at_morning
+    service: homeassistant.turn_on
+    entity_id: group.lights_main
 
-- alias: 'Turn on Lights at Sunset'
+- alias: 'Lights on at sunset'
   trigger:
     platform: numeric_state
     entity_id: sun.sun
@@ -26,33 +26,45 @@
     below: 0
   condition:
     condition: state
-    entity_id: device_tracker.lg_g7
+    entity_id: group.home_devices
     state: 'home'
   action:
-    service: scene.turn_on
-    entity_id: scene.lights_at_sunset
+    service: homeassistant.turn_on
+    entity_id: group.lights_overhead
 
-- alias: 'Turn on Lights on Cloudy Days'
+- alias: 'Lights on for cloudy days'
   trigger:
     platform: numeric_state
     entity_id:  sensor.dark_sky_cloud_coverage
     above: 55
   condition:
     - condition: state
-      entity_id: device_tracker.lg_g7
+      entity_id: group.home_devices
       state: 'home'
     - condition: time
       after: '09:00:00'
       before: '18:00:00'
   action:
-    service: scene.turn_on
-    entity_id: scene.lights_on_cloudy_days
+    service: homeassistant.turn_on
+    entity_id: group.lights_overhead
 
-- alias: 'Disable Security when Home'
+- alias: 'Lights on when home'
   trigger:
     platform: state
-    # entity_id: group.home_devices
-    entity_id: device_tracker.lg_g7
+    entity_id: group.home_devices
+    to: 'home'
+  condition:
+    condition: time
+    after: '09:00:00'
+    before: '20:00:00'
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.lights_main
+
+- alias: 'Security disable when home'
+  trigger:
+    platform: state
+    entity_id: group.home_devices
     to: 'home'
   action:
     - service: switch.turn_off
@@ -62,11 +74,10 @@
       data:
         preset_mode: none
 
-- alias: 'Enable Security when Not Home'
+- alias: 'Security enable when away'
   trigger:
     platform: state
-    # entity_id: group.home_devices
-    entity_id: device_tracker.lg_g7
+    entity_id: group.home_devices
     to: 'not_home'
     from: 'home'
     for: "00:10:00"
@@ -81,3 +92,14 @@
       entity_id: climate.hallway
       data:
         preset_mode: away
+
+- alias: 'TV power on'
+  trigger:
+    platform: state
+    entity_id: switch.tv
+    to: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.rotel_input_1
+    - service: homeassistant.turn_off
+      entity_id: group.lights_tv

@@ -1,3 +1,8 @@
+home_devices:
+  name: Home Devices
+  entities:
+    - device_tracker.lg_g7
+
 lights:
   name: Lights
   entities:
@@ -12,8 +17,20 @@ lights:
     - light.living2
     - light.living3
 
+lights_main:
+  name: Lights in Main Room
+  entities:
+    - light.counter1
+    - light.counter2
+    - light.kitchen1
+    - light.kitchen2
+    - light.kitchen3
+    - light.living1
+    - light.living2
+    - light.living3
+
 lights_overhead:
-  name: Overhead Lights
+  name: Lights Overhead
   entities:
     - light.bedroom1
     - light.office1

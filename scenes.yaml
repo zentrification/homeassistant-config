@@ -21,20 +21,3 @@
       state: off
     light.office1:
       state: off
-
-- name: Lights at Sunset
-  entities:
-    group.lights_overhead:
-      state: on
-
-- name: Lights at Morning
-  entities:
-    group.lights_overhead:
-      state: on
-    light.bedroom1:
-      state: off
-
-- name: Lights on Cloudy Days
-  entities:
-    group.lights_overhead:
-      state: on
