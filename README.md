@@ -18,7 +18,9 @@ Through HACS, install
 ## Screenshots
 
 ![Alt text](/screenshots/home.png?raw=true "Home Screenshot")
-![Alt text](/screenshots/kittycam.png?raw=true "Kittycam Screenshot")
+![Alt text](/screenshots/config.png?raw=true "Config Screenshot")
+![Alt text](/screenshots/cameras.png?raw=true "Cameras Screenshot")
+![Alt text](/screenshots/lighting.png?raw=true "Lighting Screenshot")
 ![Alt text](/screenshots/media.png?raw=true "Media Screenshot")
 ![Alt text](/screenshots/traffic.png?raw=true "Traffic Screenshot")
 ![Alt text](/screenshots/weather.png?raw=true "Weather Screenshot")

@@ -1,4 +1,4 @@
-- alias: 'Start Circadian Lighting'
+- alias: 'Enable Circadian Lighting'
   trigger:
     platform: homeassistant
     event: start
@@ -61,20 +61,20 @@
     service: homeassistant.turn_on
     entity_id: group.lights_main
 
-- alias: 'Security disable when home'
+- alias: 'Home, disable security, nest home'
   trigger:
     platform: state
     entity_id: group.home_devices
     to: 'home'
   action:
-    - service: switch.turn_off
-      entity_id: switch.foscam_security
     - service: climate.set_preset_mode
       entity_id: climate.hallway
       data:
         preset_mode: none
+    - service: switch.turn_off
+      entity_id: switch.foscam_security
 
-- alias: 'Security enable when away'
+- alias: 'Away, enable security, lights off, nest away, tv off'
   trigger:
     platform: state
     entity_id: group.home_devices
@@ -82,24 +82,24 @@
     from: 'home'
     for: "00:10:00"
   action:
+    - service: climate.set_preset_mode
+      entity_id: climate.hallway
+      data:
+        preset_mode: away
     - service: homeassistant.turn_off
       entity_id: group.lights
     - service: switch.turn_off
       entity_id: switch.tv
     - service: switch.turn_on
       entity_id: switch.foscam_security
-    - service: climate.set_preset_mode
-      entity_id: climate.hallway
-      data:
-        preset_mode: away
 
-- alias: 'TV power on'
+- alias: 'TV on, lights off, switch rotel input'
   trigger:
     platform: state
     entity_id: switch.tv
     to: 'on'
   action:
-    - service: switch.turn_on
-      entity_id: switch.rotel_input_1
     - service: homeassistant.turn_off
       entity_id: group.lights_tv
+    - service: switch.turn_on
+      entity_id: switch.rotel_input_1
