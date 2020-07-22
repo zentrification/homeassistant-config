@@ -55,32 +55,15 @@
       command_state: 'curl -s GET http://10.0.73.50:8060/query/device-info | grep power-mode | sed -e "s:.*<power-mode>\(.*\)</power-mode>.*:\1:"'
       value_template: '{{ value == "PowerOn" }}'
 
-# - platform: flux
-#   name: fluxer
-#   lights:
-#     - light.counter1
-#     - light.counter2
-#     - light.office
-#     - light.kitchen1
-#     - light.kitchen2
-#     - light.kitchen3
-#     - light.living1
-#     - light.living2
-#   start_colortemp: 6000
-#   sunset_colortemp: 3000
-#   stop_colortemp: 2500
-#   disable_brightness_adjust: True
-#   mode: mired
-#   transition: 1
-#   interval: 90
-
 - platform: circadian_lighting
-  min_brightness: 30
+  min_brightness: 40
   lights_ct:
     - light.bedroom1
+    - light.closet1
     - light.counter1
     - light.counter2
     - light.office1
+    - light.office2
     - light.kitchen1
     - light.kitchen2
     - light.kitchen3

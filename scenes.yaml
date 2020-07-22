@@ -3,7 +3,7 @@
     climate.hallway:
       state: on
       hvac_mode: cool
-      temperature: 77
+      temperature: 78
     group.lights:
       state: off
     switch.tv:
@@ -16,8 +16,4 @@
     switch.rotel_input_1:
       state: on
     group.lights_tv:
-      state: off
-    light.bedroom1:
-      state: off
-    light.office1:
       state: off

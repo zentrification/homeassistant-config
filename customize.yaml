@@ -8,6 +8,7 @@ sensor.bedroom_thermostat_humidity:
 sensor.living_room_thermostat_humidity:
   friendly_name: Humidity
   icon: mdi:water-percent
-
 switch.fluxer:
   friendly_name: Adjust lights to sun
+binary_sensor.nest_away:
+  friendly_name: Nest away

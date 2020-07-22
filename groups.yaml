@@ -1,15 +1,17 @@
 home_devices:
   name: Home Devices
   entities:
-    - device_tracker.lg_g7
+    - device_tracker.g7_thinq
 
 lights:
   name: Lights
   entities:
     - light.bedroom1
+    - light.closet1
     - light.counter1
     - light.counter2
     - light.office1
+    - light.office2
     - light.kitchen1
     - light.kitchen2
     - light.kitchen3
@@ -17,27 +19,47 @@ lights:
     - light.living2
     - light.living3
 
-lights_main:
-  name: Lights in Main Room
-  entities:
-    - light.counter1
-    - light.counter2
-    - light.kitchen1
-    - light.kitchen2
-    - light.kitchen3
-    - light.living1
-    - light.living2
-    - light.living3
-
-lights_overhead:
-  name: Lights Overhead
+lights_home:
+  name: Lights when Home
   entities:
     - light.bedroom1
+    - light.counter1
+    - light.counter2
     - light.office1
+    - light.office2
     - light.kitchen1
     - light.kitchen2
     - light.kitchen3
     - light.living1
+    - light.living2
+    - light.living3
+
+lights_morning:
+  name: Morning Lighting
+  entities:
+    - light.office1
+    - light.office2
+    - light.kitchen1
+    - light.kitchen2
+    - light.kitchen3
+    - light.living1
+    - light.living2
+    - light.living3
+
+lights_sunset:
+  name: Sunset Lighting
+  entities:
+    - light.bedroom1
+    - light.counter1
+    - light.counter2
+    - light.office1
+    - light.office2
+    - light.kitchen1
+    - light.kitchen2
+    - light.kitchen3
+    - light.living1
+    - light.living2
+    - light.living3
 
 lights_tv:
   name: Lights around TV

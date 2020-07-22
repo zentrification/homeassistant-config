@@ -1,14 +1,17 @@
-- platform: foscam
-  ip: 10.0.73.85
-  username: !secret foscam_username
-  password: !secret foscam_password
+- platform: generic
+  name: Living Room
+  still_image_url: !secret foscam_living
+
+- platform: generic
+  name: Office
+  still_image_url: !secret foscam_office
 
 # weather
 - platform: generic
   name: Miami Weather
   still_image_url: "https://radblast.wunderground.com/cgi-bin/radar/WUNIDS_map?num=10&type=N0R&mapx=400&mapy=240&brand=wui&delay=15&frame=0&scale=1&transx=0&transy=0&severe=1&smooth=0&centerx=400&centery=240&station=AMX&rainsnow=1&lightning=0&noclutter=0&showlabels=1&showstorms=0"
 
-# miami cameras
+# miami traffic cameras
 - platform: generic
   name: Brickell
   still_image_url: https://fl511.com/map/Cctv/735--2

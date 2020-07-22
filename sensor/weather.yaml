@@ -32,8 +32,8 @@
 
 - platform: moon
 
-# SAME id here
-# https://www.nws.noaa.gov/nwr/coverage/ccov.php?State=FL
+# zone found here
+# https://www.weather.gov/pimar/PubZone
 - platform: weatheralerts
-  sameid: 012086
-  # sameid: 012011
+  state: FL
+  zone: "074"

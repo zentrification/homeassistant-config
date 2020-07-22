@@ -16,9 +16,9 @@ http:
   # Uncomment this to add a password (recommended!)
   # api_password: PASSWORD
   # Uncomment this if you are using SSL or running in Docker etc
-  # base_url: capablanca.zentrification.lan:8123
-  # ssl_certificate: /etc/ssl/certs/zentrification.pem
-  # ssl_key: /etc/ssl/private/zentrification.key.pem
+  base_url: !secret base_url
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
 
 config:
 conversation:
@@ -50,18 +50,21 @@ smartir:
 switch: !include switches.yaml
 
 circadian_lighting:
+  min_colortemp: 2500
+  max_colortemp: 6000
+  sunset_offset: 00:15:00
   transition: 1
 
-device_tracker:
-  - platform: unifi
-    username: !secret unifi_username
-    password: !secret unifi_password
-    verify_ssl: false
-    interval_seconds: 10
-    consider_home: 60
-    new_device_defaults:
-      track_new_devices: true
-      hide_if_away: false
+google_assistant:
+  project_id: homeassistant-163102
+  service_account: !include google_service_account.json
+  report_state: true
+  exposed_domains:
+    - climate
+    - light
+    - media_player
+    - scene
+    - switch
 
 media_player:
   - platform: plex
@@ -75,10 +78,13 @@ nest:
   client_id: !secret nest_id
   client_secret: !secret nest_secret
 
-roku:
-  - host: 10.0.73.50
-
 weather:
   - platform: darksky
     api_key: !secret darksky_api_key
+
+# not worknig
+# zoneminder:
+#   - host: cameras.zentrification.lan
+#     path: "/"
+#     path_zms: "/cgi-bin/nph-zms"
 

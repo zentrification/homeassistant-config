@@ -2,6 +2,7 @@ deps/
 .uuid
 .HA_VERSION
 .storage/
+google_service_account.json
 home-assistant*.db
 home-assistant.log
 known_devices.yaml
